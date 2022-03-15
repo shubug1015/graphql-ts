@@ -5,7 +5,7 @@
     "lib": ["esnext"],
     "strict": true,
     "rootDir": ".",
-    "outDir": "dist",
+    "outDir": "public/dist",
     "sourceMap": true,
     "esModuleInterop": true,
     "baseUrl": ".",
