@@ -8,7 +8,7 @@
     "dev": "ts-node-dev --transpile-only --no-notify --exit-child src/index.ts",
     "generate": "ts-node --transpile-only src/schema.ts",
     "build": "prisma generate && npm run generate && tsc",
-    "start": "node dist/src/index.js"
+    "start": "node public/dist/src/index.js"
   },
   "keywords": [],
   "author": "",
