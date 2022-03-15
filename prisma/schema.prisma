@@ -12,23 +12,23 @@ datasource db {
   referentialIntegrity = "prisma"
 }
 
-model Link {
-  id          Int      @id @default(autoincrement())
-  createdAt   DateTime @default(now())
-  description String
-  url         String
-  postedBy    User?    @relation(name: "PostedBy", fields: [postedById], references: [id])
-  postedById  Int?
-  voters      User[]   @relation(name: "Votes")
+// model Link {
+//   id          Int      @id @default(autoincrement())
+//   createdAt   DateTime @default(now())
+//   description String
+//   url         String
+//   postedBy    User?    @relation(name: "PostedBy", fields: [postedById], references: [id])
+//   postedById  Int?
+//   voters      User[]   @relation(name: "Votes")
 
-  @@index([postedById])
-}
+//   @@index([postedById])
+// }
 
 model User {
   id       Int    @id @default(autoincrement())
   name     String
   email    String @unique
   password String
-  links    Link[] @relation(name: "PostedBy")
-  votes    Link[] @relation(name: "Votes")
+  // links    Link[] @relation(name: "PostedBy")
+  // votes    Link[] @relation(name: "Votes")
 }

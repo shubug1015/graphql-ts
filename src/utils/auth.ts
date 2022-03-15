@@ -1,6 +1,6 @@
 import * as jwt from 'jsonwebtoken';
 
-export const APP_SECRET = 'GraphQL-is-aw3some';
+export const APP_SECRET = '+VeB_u9v97Tf+P_k>]m[L}4+zCV5e5{;ZWFS)m*';
 
 export interface AuthTokenPayload {
   userId: number;
