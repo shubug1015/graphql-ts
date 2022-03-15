@@ -16,6 +16,31 @@ export const AuthPayload = objectType({
 export const AuthMutation = extendType({
   type: 'Mutation',
   definition(t) {
+    t.nonNull.field('signup', {
+      type: 'AuthPayload',
+      args: {
+        email: nonNull(stringArg()),
+        password: nonNull(stringArg()),
+        name: nonNull(stringArg()),
+      },
+      async resolve(parent, args, context) {
+        const { email, name } = args;
+
+        const password = await bcrypt.hash(args.password, 10);
+
+        const user = await context.prisma.user.create({
+          data: { email, name, password },
+        });
+
+        const token = jwt.sign({ userId: user.id }, APP_SECRET);
+
+        return {
+          token,
+          user,
+        };
+      },
+    });
+
     t.nonNull.field('login', {
       type: 'AuthPayload',
       args: {
@@ -34,31 +59,6 @@ export const AuthMutation = extendType({
         if (!valid) {
           throw new Error('Invalid password');
         }
-
-        const token = jwt.sign({ userId: user.id }, APP_SECRET);
-
-        return {
-          token,
-          user,
-        };
-      },
-    });
-
-    t.nonNull.field('signup', {
-      type: 'AuthPayload',
-      args: {
-        email: nonNull(stringArg()),
-        password: nonNull(stringArg()),
-        name: nonNull(stringArg()),
-      },
-      async resolve(parent, args, context) {
-        const { email, name } = args;
-
-        const password = await bcrypt.hash(args.password, 10);
-
-        const user = await context.prisma.user.create({
-          data: { email, name, password },
-        });
 
         const token = jwt.sign({ userId: user.id }, APP_SECRET);
 
