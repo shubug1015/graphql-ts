@@ -1,5 +1,5 @@
-// export * from './Link';
-export * from './User';
-export * from './Auth';
-// export * from './Vote';
-export * from './scalars/Date';
+// export * from './link';
+export * from './user';
+export * from './auth';
+// export * from './vote';
+export * from './scalars/date';
