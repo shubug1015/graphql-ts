@@ -8,10 +8,7 @@ export const server = new ApolloServer({
   context,
   introspection: true,
   plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
-  cors: {
-    origin: '*',
-    credentials: true,
-  },
+  cors: true,
 });
 
 const port = process.env.PORT || 8000;
